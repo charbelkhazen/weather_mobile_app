@@ -7,7 +7,7 @@ const App = () => {
 	return (
 	<View style={styles.container}>
 	<View style = {styles.textView}>
-	<Text style = {styles.text}>{counter % 2 ? "A simple text" : "Hello World" }</Text>
+	<Text style = {styles.text}>{counter % 2 ? "Hello world" : "A simple text" }</Text>
 	</View>
 	<Pressable onPress={() => {setCounter(counter + 1); console.log("Button Pressed")}} style = {styles.buttonView}>
 		<Text>Click me</Text>
