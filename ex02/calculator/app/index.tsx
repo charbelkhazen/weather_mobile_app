@@ -1,9 +1,42 @@
 import {Pressable, TextInput, Button, StyleSheet, Text, View} from 'react-native'
 import {useState} from 'react'
+import { evaluate} from "mathjs"
 
 const App = () => {
-	const [text1, setText1] = useState("0");
-	const [text2, setText2] = useState("0");
+	const [text1, setText1] = useState("");
+	const [text2, setText2] = useState("");
+
+	const appendSymbol = (symbol) =>
+	{
+		setText1(text1 + symbol)
+	}
+	const clearinput = () => 
+	{
+		setText1("")
+	}
+	const removeSymbol = () => 
+	{
+		setText1(text1.slice(0, -1))
+	}
+	const setComputation = (expression) => 
+	{
+		console.log("in setComputation " + safe_computation(expression))
+		setText2(safe_computation(expression))
+	}
+	const safe_computation = (expression) => 
+	{
+		if (!/^[0-9+\-*/().\s]+$/.test(expression)) return "Error";
+		let result = 0
+		try
+		{
+			result = String(evaluate(expression));
+		}
+		catch (error)
+		{
+			return ("Error");
+		}
+	return (result);
+	};
 	return (
 		<View style={{ flex : 1}}>
 		<View style={styles.titlebox}>
@@ -14,82 +47,85 @@ const App = () => {
 			style = {styles.input}
 			onChangeText = {setText1}
 			value = {text1}
-			keyboardTypr="numeric"
+			keyboardType="numeric"
+			placeholder = "0"
+			placeholderTextColor = "grey"
 		/> 
 		<TextInput 
 			style = {styles.input}
 			onChangeText = {setText2}
 			value = {text2}
-			keyboardTypr="numeric"
+			keyboardType="numeric"
+			placeholder = "0"
+			placeholderTextColor = "grey"
 		/> 
 		</View>
 		<View style = {styles.calcButtons}>
 		<View style = {styles.row}>
-			<Pressable style={styles.button}>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("7")}}>
 			<Text style={styles.buttonText}>7</Text>
 			</Pressable>
-			<Pressable style={styles.button}>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("8")}}>
 			<Text style={styles.buttonText}>8</Text>
 			</Pressable>
-			<Pressable style={styles.button}>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("9")}}>
 			<Text style={styles.buttonText}>9</Text>
 			</Pressable>
-			<Pressable style={styles.button}>
+			<Pressable style={styles.button} onPress={() => {removeSymbol()}}>
 			<Text style={styles.buttonText}>C</Text>
 			</Pressable>
-			<Pressable style={styles.button}>
+			<Pressable style={styles.button} onPress={() => {clearinput()}}>
 			<Text style={styles.buttonText}>AC</Text>
 			</Pressable>
 		</View>
 		<View style = {styles.row}>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>7</Text>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("4")}}>
+			<Text style={styles.buttonText}>4</Text>
 			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>8</Text>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("5")}}>
+			<Text style={styles.buttonText}>5</Text>
 			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>9</Text>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("6")}}>
+			<Text style={styles.buttonText}>6</Text>
 			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>C</Text>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("+")}}>
+			<Text style={styles.buttonText}>+</Text>
 			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>AC</Text>
-			</Pressable>
-		</View>
-		<View style = {styles.row}>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>7</Text>
-			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>8</Text>
-			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>9</Text>
-			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>C</Text>
-			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>AC</Text>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("-")}}>
+			<Text style={styles.buttonText}>-</Text>
 			</Pressable>
 		</View>
 		<View style = {styles.row}>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>7</Text>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("1")}}>
+			<Text style={styles.buttonText}>1</Text>
+			</Pressable>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("2")}}>
+			<Text style={styles.buttonText}>2</Text>
+			</Pressable>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("3")}}>
+			<Text style={styles.buttonText}>3</Text>
+			</Pressable>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("*")}}>
+			<Text style={styles.buttonText}>×</Text>
+			</Pressable>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("/")}}>
+			<Text style={styles.buttonText}>/</Text>
+			</Pressable>
+		</View>
+		<View style = {styles.row}>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("0")}}>
+			<Text style={styles.buttonText}>0</Text>
+			</Pressable>
+			<Pressable style={styles.button} onPress={() => {appendSymbol(".")}}>
+			<Text style={styles.buttonText}>.</Text>
+			</Pressable>
+			<Pressable style={styles.button} onPress={() => {appendSymbol("00")}}>
+			<Text style={styles.buttonText}>00</Text>
+			</Pressable>
+			<Pressable style={styles.button} onPress={() => {setComputation(text1)}}>
+			<Text style={styles.buttonText}>=</Text>
 			</Pressable>
 			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>8</Text>
-			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>9</Text>
-			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>C</Text>
-			</Pressable>
-			<Pressable style={styles.button}>
-			<Text style={styles.buttonText}>AC</Text>
 			</Pressable>
 		</View>
 		</View>
@@ -123,7 +159,7 @@ const styles = StyleSheet.create({
 		},
 	midscreen: {
 		backgroundColor: "#495057",
-		flex : 1,
+		flex : 2,
 		},
 	button: {
 		backgroundColor : "#3b3a39",	
@@ -134,7 +170,7 @@ const styles = StyleSheet.create({
 	},
 	buttonText : {
 		color : "white",
-		fontSize : 10,
+		fontSize : 15,
 		},
 	row: {
 		flexDirection : "row",
@@ -143,6 +179,7 @@ const styles = StyleSheet.create({
 	},
 	calcButtons : {
 		flex : 3, 
+		backgroundColor : "#3b3a39",	
 	},
 });
 
