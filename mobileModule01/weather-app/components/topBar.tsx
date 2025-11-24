@@ -1,16 +1,32 @@
-import {View, Text, TextInput} from 'react-native'
+import {View, Text, TextInput, StyleSheet} from 'react-native'
 import {useState} from 'react'
 
 //HOW CAN I USE TYPESCRIPT HERE 
 //USE TEXT INPUT PROPS
 
-export default function TopBar() {
+export default function TopBar({style}) {
 	const [input, setInput] = useState("");
 	return (
 		<TextInput
 		onChangeText = {setInput}
 		placeholder = "Search location"
 		value = {input}
+		style = {[styles.textInputDesign, style]}
 		/>
 	);
 };
+
+const styles = StyleSheet.create(
+		{
+			textInputDesign : 
+			{
+				
+				borderWidth: 2,
+				borderRadius: 10,
+				paddingHorizontal: 12,
+				paddingVertical: 8,
+				borderColor : "black",
+				backgroundColor :"#F1F3E0",
+			}
+		}
+);

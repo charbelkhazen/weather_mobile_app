@@ -3,13 +3,18 @@ import Currently from "./currently";
 import Today from "./today";
 import Weekly from "./weekly";
 import TopBar from "../components/topBar"
+import { SafeAreaView } from "react-native-safe-area-context";
+
+const BG = "#777C6D"
 
 export default function TabsWithSwipe() {
   return (
-  	<View style = {styles.container}>
-  	<Text style = {styles.title}>INDEX</Text>
-	<TopBar/>
-  	</View>
+    <SafeAreaView style={{ flex: 1, backgroundColor: BG }}>
+      <TopBar/>
+      <View style={styles.container}>
+        <Text style={styles.title}>INDEX</Text>
+      </View>
+    </SafeAreaView>
   );
 }
 
@@ -18,7 +23,7 @@ const styles = StyleSheet.create({
 	flex : 1,
 	justifyContent: 'center',
 	alignItems: 'center',
-	backgroundColor : "#777C6D",
+	backgroundColor : BG,
 	},
 	title: {
 		fontSize: 50,
