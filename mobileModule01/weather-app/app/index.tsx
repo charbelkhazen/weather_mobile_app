@@ -14,7 +14,7 @@ export default function TabsWithSwipe() {
     <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: "#F1F3E0"}}>
       <TopBar userTextInput={userTextInput} setUserTextInput={setUserTextInput}/>
       <View style={styles.container}>
-        <Text style={styles.title}>INDEX</Text>
+        <Text style={styles.title}>{userTextInput ? userTextInput : "INDEX" }</Text>
       </View>
     </SafeAreaView>
   );
