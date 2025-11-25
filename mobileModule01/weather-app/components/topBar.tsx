@@ -4,15 +4,16 @@ import {useState} from 'react'
 //HOW CAN I USE TYPESCRIPT HERE 
 //USE TEXT INPUT PROPS
 
-export default function TopBar({style}) {
-	const [input, setInput] = useState("");
+export default function TopBar({style, userTextInput, setUserTextInput}) {
 	return (
+	<View>
 		<TextInput
-		onChangeText = {setInput}
+		onChangeText = {setUserTextInput}
 		placeholder = "Search location"
-		value = {input}
+		value = {userTextInput}
 		style = {[styles.textInputDesign, style]}
 		/>
+	</View>
 	);
 };
 
@@ -20,6 +21,7 @@ const styles = StyleSheet.create(
 		{
 			textInputDesign : 
 			{
+				height : 70,
 				borderRadius: 10,
 				paddingHorizontal: 12,
 				paddingVertical: 8,
