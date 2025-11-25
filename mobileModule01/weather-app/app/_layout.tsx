@@ -17,7 +17,7 @@ export default function TabLayout() {
 	}}
 	style = {styles.tabDesign}>
     	<Tabs.Screen name="index"
-		options = {{title : "anything",
+		options = {{title : "Currently",
 		headerShown : false,
 		tabBarIcon: () => (
 		<FontAwesome name="sun-o" size={24} color="black" />)}}/>

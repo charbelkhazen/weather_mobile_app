@@ -7,7 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 const BG = "#B7B89F"
 export default function TabsWithSwipe() {
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: BG }}>
+    <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: "#F1F3E0"}}>
       <TopBar/>
       <View style={styles.container}>
         <Text style={styles.title}>TODAY</Text>

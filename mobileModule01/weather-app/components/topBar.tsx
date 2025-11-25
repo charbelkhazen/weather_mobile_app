@@ -20,12 +20,9 @@ const styles = StyleSheet.create(
 		{
 			textInputDesign : 
 			{
-				
-				borderWidth: 2,
 				borderRadius: 10,
 				paddingHorizontal: 12,
 				paddingVertical: 8,
-				borderColor : "black",
 				backgroundColor :"#F1F3E0",
 			}
 		}
