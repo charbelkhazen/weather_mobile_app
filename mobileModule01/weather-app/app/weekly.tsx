@@ -1,14 +1,16 @@
 import {Text, StyleSheet, View} from "react-native";
+import {useState} from "react";
 import PagerView from "react-native-pager-view";
 import TopBar from "../components/topBar"
 import { SafeAreaView } from "react-native-safe-area-context";
 const BG = "#CBCBCB"
 export default function TabsWithSwipe() {
+	const [userTextInput, setUserTextInput] = useState("");
   return (
     <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: "#F1F3E0"}}>
-      <TopBar/>
+      {/*<TopBar userTextInput={userTextInput} setUserTextInput={setUserTextInput}/>*/}
       <View style={styles.container}>
-        <Text style={styles.title}>WEEKLY</Text>
+        <Text style={styles.title}>{userTextInput ? userTextInput : "WEEKLY" }</Text>
       </View>
     </SafeAreaView>
   );

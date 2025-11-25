@@ -10,9 +10,11 @@ const BG = "#777C6D"
 
 export default function TabsWithSwipe() {
 	const [userTextInput, setUserTextInput] = useState("");
+	const [userLocation, setUserLocation] = useState("");
+	const [errLog, setErrLog] = useState("");
   return (
     <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: "#F1F3E0"}}>
-      <TopBar userTextInput={userTextInput} setUserTextInput={setUserTextInput}/>
+      <TopBar userTextInput={userTextInput} setUserTextInput={setUserTextInput} userLocation={userLocation} setUserLocation={setUserLocation} errLog={errLog} setErrLog={setErrLog}/>
       <View style={styles.container}>
         <Text style={styles.title}>{userTextInput ? userTextInput : "INDEX" }</Text>
       </View>
