@@ -29,7 +29,6 @@ async function getCurrentLocation(setUserLocation, setErrLog, setWaitBool)
 	return;
 	}
 
-	setUserLocation("Tracking your location...");
 	setWaitBool(true);
 	const loc = await Location.getCurrentPositionAsync({});
 	const geo = await Location.reverseGeocodeAsync({

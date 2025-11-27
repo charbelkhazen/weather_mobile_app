@@ -1,4 +1,4 @@
-import {Text, StyleSheet, View} from "react-native";
+import {Text, StyleSheet, View, ActivityIndicator} from "react-native";
 import {useState} from "react";
 import Currently from "./currently";
 import Today from "./today";
@@ -16,9 +16,13 @@ export default function TabsWithSwipe() {
 		<SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: "#F1F3E0"}}>
 		<TopBar setWaitBool={setWaitBool} userLocation={userLocation} setUserLocation={setUserLocation} errLog={errLog} setErrLog={setErrLog}/>
 		<View style={styles.container} >
-		
 		<Text style={styles.title}>INDEX</Text>
-		<Text style={styles.title}>{errLog ? "" : userLocation }</Text>
+		{waitBool ? (
+			<ActivityIndicator size="large" color="#F1F3E0" />
+			) : (
+			<Text style={styles.title}>{errLog ? "" : userLocation }</Text>
+			)
+		}
 		</View>
 		</SafeAreaView>
 		);
@@ -33,6 +37,6 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		fontSize: 50,
-		color : "white"
-		}
+		color : "#F1F3E0",
+		},
 	});
