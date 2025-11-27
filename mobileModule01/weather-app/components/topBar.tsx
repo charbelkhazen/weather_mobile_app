@@ -11,7 +11,7 @@ const createAlert = () =>
 	{text: 'OK', onPress: () => console.log('OK Pressed')},
 	]);
 
-async function getCurrentLocation(setUserLocation, setErrLog)
+async function getCurrentLocation(setUserLocation, setErrLog, setWaitBool)
 {
 	const perm = await Location.requestForegroundPermissionsAsync();
 	if (perm.status !== "granted") {
@@ -29,22 +29,24 @@ async function getCurrentLocation(setUserLocation, setErrLog)
 	return;
 	}
 
+	setUserLocation("Tracking your location...");
+	setWaitBool(true);
 	const loc = await Location.getCurrentPositionAsync({});
 	const geo = await Location.reverseGeocodeAsync({
 	latitude: loc.coords.latitude,
 	longitude: loc.coords.longitude,
 	});
 	const place = geo[0];
-
+	setWaitBool(false);
 	setUserLocation(place.city || place.region || place.country);
 	setErrLog("");
 }
 
-function GeoButton({userLocation, setUserLocation, errLog, setErrLog})
+function GeoButton({setWaitBool, userLocation, setUserLocation, errLog, setErrLog})
 {
 	return (
 	<Pressable 
-		onPress = {() =>{getCurrentLocation(setUserLocation, setErrLog);}}	
+		onPress = {() =>{getCurrentLocation(setUserLocation, setErrLog, setWaitBool);console.log(userLocation)}}	
 		style = {styles.GeoButton}
 	>
 	<Ionicons name = "location-outline" size = {27}/>
@@ -53,16 +55,16 @@ function GeoButton({userLocation, setUserLocation, errLog, setErrLog})
 	)
 }
 
-export default function TopBar({style, userTextInput, setUserTextInput, userLocation, setUserLocation, errLog, setErrLog}) {
+export default function TopBar({setWaitBool, style, userLocation, setUserLocation, errLog, setErrLog}) { //, userTextInput, setUserTextInput
 	return (
 	<View style = {styles.container}>
 		<TextInput
-		onChangeText = {setUserTextInput}
+		onChangeText = {setUserLocation}
 		placeholder = "Search location"
-		value = {userTextInput}
+		value = {userLocation} //what anbout removing this - understand it etter
 		style = {[styles.textInputDesign, style]}
 		/>
-		<GeoButton userLocation={userLocation} setUserLocation={setUserLocation} errLog={errLog} setErrLog={setErrLog} />
+		<GeoButton setWaitBool={setWaitBool} userLocation={userLocation} setUserLocation={setUserLocation} errLog={errLog} setErrLog={setErrLog} />
 	</View>
 	);
 };

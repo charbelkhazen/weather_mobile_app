@@ -21,6 +21,7 @@ export default function TabLayout() {
 		headerShown : false,
 		tabBarIcon: () => (
 		<FontAwesome name="sun-o" size={24} color="black" />)}}/>
+		{/*
     	<Tabs.Screen name="today"
 		options = {{title : "Today",
 		headerShown : false,
@@ -33,6 +34,7 @@ export default function TabLayout() {
 		tabBarIcon: () => (
 		<MaterialCommunityIcons name="calendar-week" size={24} color="black" />)
 		}}/>
+		*/}
     </Tabs>
   );
 }
