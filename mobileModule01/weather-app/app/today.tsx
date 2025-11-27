@@ -1,22 +1,30 @@
-import {Text, StyleSheet, View} from "react-native";
-import PagerView from "react-native-pager-view";
+import {Text, StyleSheet, View, ActivityIndicator} from "react-native";
+import {useState} from "react";
 import TopBar from "../components/topBar"
 import { SafeAreaView } from "react-native-safe-area-context";
-import {useState} from "react";
 
-// why tabs with swipe name ????? REMOVE IT
 const BG = "#B7B89F"
+
 export default function TabsWithSwipe() {
-	const [userTextInput, setUserTextInput] = useState("");
-  return (
-    <SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: "#F1F3E0"}}>
-      {/*<TopBar userTextInput={userTextInput} setUserTextInput={setUserTextInput}/>*/}
-      <View style={styles.container}>
-        <Text style={styles.title}>{userTextInput ? userTextInput : "TODAY" }</Text>
-      </View>
-    </SafeAreaView>
-  );
-}
+	const [userLocation, setUserLocation] = useState("");
+	const [errLog, setErrLog] = useState("");
+	const [waitBool, setWaitBool] = useState(false);
+	return (
+		<SafeAreaView edges={['top']} style={{ flex: 1, backgroundColor: "#F1F3E0"}}>
+		<TopBar setWaitBool={setWaitBool} userLocation={userLocation} setUserLocation={setUserLocation} errLog={errLog} setErrLog={setErrLog}/>
+		<View style={styles.container} >
+		<Text style={styles.title}>TODAY</Text>
+		{waitBool ? (
+			<ActivityIndicator size="large" color="#F1F3E0" />
+			) : (
+			<Text style={styles.title}>{errLog ? "" : userLocation }</Text>
+			)
+		}
+		</View>
+		</SafeAreaView>
+		);
+	}
+
 const styles = StyleSheet.create({
 	container: {
 	flex : 1,
@@ -26,6 +34,6 @@ const styles = StyleSheet.create({
 	},
 	title: {
 		fontSize: 50,
-		color : "white"
-		}
+		color : "#F1F3E0",
+		},
 	});
