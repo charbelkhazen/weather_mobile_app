@@ -6,13 +6,8 @@ import { Ionicons } from '@expo/vector-icons';
 //!!PUT LOGIC IN ANOTHER FILE 
 // !! STORE THE WHOLE GEO IN A DB , MIGHT HELP WITH API WEATHER RETREIVAL (NON ARABIC )
 
-const createTwoButtonAlert = () =>
-	Alert.alert('Alert Title', 'My Alert Msg', [
-	{
-	text: 'Cancel',
-	onPress: () => console.log('Cancel Pressed'),
-	style: 'cancel',
-	},
+const createAlert = () =>
+	Alert.alert('Location Requirement', 'Make sure location permissions are all enabled.', [
 	{text: 'OK', onPress: () => console.log('OK Pressed')},
 	]);
 
@@ -20,16 +15,16 @@ async function getCurrentLocation(setUserLocation, setErrLog)
 {
 	const perm = await Location.requestForegroundPermissionsAsync();
 	if (perm.status !== "granted") {
-	console.log("NO GRANDTED");
-	createTwoButtonAlert();
+	createAlert();
+	console.log("Location Permissions Not Granted");
 	setErrLog("Permission denied");
 	return;
 	}
 
 	const gpsEnabled = await Location.hasServicesEnabledAsync();
 	if (!gpsEnabled) {
-	console.log("NOT ENABLES");
-	createTwoButtonAlert();
+	createAlert();
+	console.log("Location Permissions Not Enabled");
 	setErrLog("Permission denied");
 	return;
 	}
