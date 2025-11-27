@@ -1,8 +1,8 @@
 import {Text, StyleSheet, View, ActivityIndicator} from "react-native";
 import {useState} from "react";
-import Currently from "./currently";
-import Today from "./today";
-import Weekly from "./weekly";
+//import Currently from "./currently";
+//import Today from "./today";
+//import Weekly from "./weekly";
 import TopBar from "../components/topBar"
 import { SafeAreaView } from "react-native-safe-area-context";
 
