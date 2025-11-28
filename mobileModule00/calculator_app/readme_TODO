@@ -1,0 +1,21 @@
+rotation is not well handled , it works but UI breaks.
+use this trick to solve it 
+
+Avoid fixed widths/heights
+
+If you have things like:
+
+width: 300,
+height: 200,
+
+
+they will destroy your landscape layout.
+
+Prefer:
+
+width: '100%',
+height: 'auto',
+flex: 1,
+
+
+Let flexbox do the work.

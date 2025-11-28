@@ -11,9 +11,9 @@ export default function TabLayout() {
 
 	screenOptions={{
 	tabBarStyle: { backgroundColor: "#F1F3E0" },
-	tabBarActiveTintColor: "black",      // when selected
-	tabBarInactiveTintColor: "#555",     // when not selected
-	tabBarLabelStyle: { fontWeight: "bold" }, // makes text bold
+	tabBarActiveTintColor: "black",
+	tabBarInactiveTintColor: "#555", 
+	tabBarLabelStyle: { fontWeight: "bold" },
 	}}
 	style = {styles.tabDesign}>
     	<Tabs.Screen name="index"

@@ -41,29 +41,30 @@ async function getCurrentLocation(setUserLocation, setErrLog, setWaitBool)
 	setErrLog("");
 }
 
-function GeoButton({setWaitBool, userLocation, setUserLocation, errLog, setErrLog})
+function GeoButton({setWaitBool, setUserLocation, setErrLog})
 {
 	return (
 	<Pressable 
-		onPress = {() =>{getCurrentLocation(setUserLocation, setErrLog, setWaitBool);console.log(userLocation)}}	
+		onPress = {() =>{getCurrentLocation(setUserLocation, setErrLog, setWaitBool)}}	
 		style = {styles.GeoButton}
 	>
 	<Ionicons name = "location-outline" size = {27}/>
-	{/*<Text style = {styles.GeoButtonText}>{errLog ? errLog : userLocation}</Text>*/}
 	</Pressable>
 	)
 }
 
-export default function TopBar({setWaitBool, style, userLocation, setUserLocation, errLog, setErrLog}) { //, userTextInput, setUserTextInput
+export default function TopBar({userInput, setUserInput, setUserLocation}) { 
+	const [waitBool, setWaitBool] = useState(false);
+	const [errLog, setErrLog] = useState("");
 	return (
 	<View style = {styles.container}>
 		<TextInput
-		onChangeText = {setUserLocation}
+		onChangeText = {setUserInput}
 		placeholder = "Search location"
-		value = {userLocation} //what anbout removing this - understand it etter
-		style = {[styles.textInputDesign, style]}
+		value = {userInput}
+		style = {[styles.textInputDesign]}
 		/>
-		<GeoButton setWaitBool={setWaitBool} userLocation={userLocation} setUserLocation={setUserLocation} errLog={errLog} setErrLog={setErrLog} />
+		<GeoButton setWaitBool={setWaitBool} setUserLocation={setUserLocation} setErrLog={setErrLog}/>
 	</View>
 	);
 };
