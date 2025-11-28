@@ -3,7 +3,6 @@ import {useState} from "react";
 import TopBar from "../components/topBar"
 import { SafeAreaView } from "react-native-safe-area-context";
 
-//need to add  
 export default function WeatherScreen({backgroundColor, pageTitle}) {
 	const [userLocation, setUserLocation] = useState("");
 	const [userInput, setUserInput] = useState("");
