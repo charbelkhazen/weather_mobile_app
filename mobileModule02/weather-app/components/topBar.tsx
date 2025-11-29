@@ -2,7 +2,7 @@ import {View, Text, TextInput, StyleSheet, Pressable, Alert} from 'react-native'
 import GeoButton from './geoButton';
 import {useState, useEffect} from 'react';
 
-export default function TopBar({userInput, setUserInput, setUserLocation}) { 
+export default function TopBar({userInput, setUserInput, setSelectedLocation, setUserLocation}) { 
 	const [waitBool, setWaitBool] = useState(false);
 	const [errLog, setErrLog] = useState("");
 	return (
@@ -12,6 +12,7 @@ export default function TopBar({userInput, setUserInput, setUserLocation}) {
 		placeholder = "Search location"
 		value = {userInput}
 		style = {[styles.textInputDesign]}
+		onFocus = {() => setSelectedLocation(false)}
 		/>
 		<GeoButton setWaitBool={setWaitBool} setUserLocation={setUserLocation} setErrLog={setErrLog}/>
 	</View>
